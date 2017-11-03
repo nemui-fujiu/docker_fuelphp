@@ -1,0 +1,45 @@
+version: '2'
+services:
+    web:
+        container_name: fuel_web
+        build:
+            context: ./nginx/
+            dockerfile: Dockerfile
+        volumes:
+            - ./www:/var/www
+        ports:
+            - "9080:80"
+        links:
+            - app
+    app:
+        container_name: fuel_app
+        build: 
+            context: ./php7/
+            dockerfile: Dockerfile
+        volumes:
+            - ./www:/var/www
+            - ./tmp/mysqld:/var/run/mysqld
+        links:
+            - mysql
+            - redis
+    mysql:
+        container_name: fuel_mysql
+        restart: always
+        image: mysql:latest
+        volumes:
+            - ./mysql:/var/lib/mysql
+            - ./tmp/mysqld:/var/run/mysqld
+        environment:
+            - "MYSQL_ROOT_PASSWORD=fuel_db"
+            - "MYSQL_DATABASE=fuel_db_password"
+        ports:
+            - "13306:3306"
+    redis:
+        container_name: fuel_redis
+        restart: always
+        image: redis:latest
+        volumes:
+            - ./redis:/data
+        ports:
+            - "16379:6379"
+        command: redis-server --appendonly yes
