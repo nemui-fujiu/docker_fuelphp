@@ -15,6 +15,8 @@ Docker Compse構成
 ```
 
 
+環境構築
+
 
 ```
 docker-compose up --build -d
@@ -51,3 +53,5 @@ PHP7で環境構築している関係でmigrationコマンドを実行すると�
 - return str_pad($last + 1, 3, '0', STR_PAD_LEFT);
 + return str_pad((int)$last + 1, 3, '0', STR_PAD_LEFT);
 ```
+
+あとは問題なく利用可能！
