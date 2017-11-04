@@ -30,8 +30,8 @@ services:
             - ./mysql:/var/lib/mysql
             - ./tmp/mysqld:/var/run/mysqld
         environment:
-            - "MYSQL_ROOT_PASSWORD=fuel_db"
-            - "MYSQL_DATABASE=fuel_db_password"
+            - "MYSQL_DATABASE=fuel_db"
+            - "MYSQL_ROOT_PASSWORD=fuel_db_password"
         ports:
             - "13306:3306"
     redis:
