@@ -1,9 +1,10 @@
 
-
+# Docker ComposeでFuelPHP + Nginx + MySQL + PHP7
 
 docker-composeにて環境構築
 
-Docker Compse構成
+## Docker Compse構成
+
 ```
 .
 ├── README.md
@@ -15,7 +16,7 @@ Docker Compse構成
 ```
 
 
-環境構築
+## 環境構築
 
 
 ```
@@ -29,6 +30,9 @@ docker exec -it fuel_app bash
 cd /var/www/
 php oil create fuel_project
 ```
+
+
+## generateのエラー回避について
 
 PHP7で環境構築している関係でmigrationコマンドを実行するとエラーになるので、以下を変更
 以下、1790行目の数値変換が正しく行えていないため、(int)キャストを追加する。
@@ -55,3 +59,29 @@ PHP7で環境構築している関係でmigrationコマンドを実行すると�
 ```
 
 あとは問題なく利用可能！
+
+##  おまけ
+
+* プロジェクト作成時はFUEL_ENVがdevelopmentになっているので、configもdevelopmentを参照している。
+* db.phpのdsnのhostはdocker-compose.ymlに記載したコンテナ名を指せばOK
+
+```php:app/config/development/db.php
+return [
+    // MySQL ドライバの設定
+    'default' => [
+        'type'           => 'pdo',
+        'connection'     => [
+            'dsn'            => 'mysql:host=fuel_mysql;dbname=fuel_db',
+            'username'       => 'root',
+            'password'       => 'fuel_db_password',
+            'persistent'     => false,
+            'compress'       => false,
+        ],
+        'identifier'   => '`',
+        'table_prefix'   => '',
+        'charset'        => 'utf8',
+        'enable_cache'   => true,
+        'profiling'      => false,
+    ],
+];
+```
