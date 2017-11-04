@@ -23,12 +23,21 @@ docker-composeにて環境構築
 docker-compose up --build -d
 ```
 
-fuel_appに入ってプロジェクト作成
+Dockerコンテナのfuel_appに入る
 
 ```
 docker exec -it fuel_app bash
 cd /var/www/
-php oil create fuel_project
+```
+
+公式ページにインストール方法が書いてあるのでそのまま実行。
+http://fuelphp.jp/docs/1.7/installation/instructions.html
+実行できない場合は以下のようにhttpsをつけて実行する。
+
+
+```
+curl https://get.fuelphp.com/oil | sh
+oil create fuel_project
 ```
 
 
