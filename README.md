@@ -30,8 +30,8 @@ docker exec -it fuel_app bash
 cd /var/www/
 ```
 
-公式ページにインストール方法が書いてあるのでそのまま実行。
-http://fuelphp.jp/docs/1.7/installation/instructions.html
+* 公式ページにインストール方法が書いてあるのでそのまま実行。  
+http://fuelphp.jp/docs/1.7/installation/instructions.html  
 実行できない場合は以下のようにhttpsをつけて実行する。
 
 
@@ -43,8 +43,8 @@ oil create fuel_project
 
 ## generateのエラー回避について
 
-PHP7で環境構築している関係でmigrationコマンドを実行するとエラーになるので、以下を変更
-以下、1790行目の数値変換が正しく行えていないため、(int)キャストを追加する。
+* PHP7で環境構築している関係でmigrationコマンドを実行するとエラーになるので、以下を変更
+* 以下、1790行目の数値変換が正しく行えていないため、(int)キャストを追加する。
 
 
 ```php:generate.php
