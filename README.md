@@ -37,7 +37,7 @@ http://fuelphp.jp/docs/1.7/installation/instructions.html
 
 ```
 curl https://get.fuelphp.com/oil | sh
-oil create fuel_project
+oil create fuel_server
 ```
 
 
